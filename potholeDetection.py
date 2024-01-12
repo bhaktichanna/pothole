@@ -19,7 +19,7 @@ dataset_path = 'C:\\Users\\prasad\\OneDrive\\Desktop\\Bhakti\\BE\\project\\datas
 yaml_file_path = os.path.join(dataset_path, 'data.yaml')
 with open(yaml_file_path, 'r') as file:
     yaml_content = yaml.load(file, Loader=yaml.FullLoader)
-    print(yaml.dump(yaml_content, default_flow_style=False))
+    #print(yaml.dump(yaml_content, default_flow_style=False))
 
 train_images_path = os.path.join(dataset_path, 'train', 'images')
 valid_images_path = os.path.join(dataset_path, 'valid', 'images')
@@ -57,7 +57,6 @@ random.seed(0)
 # Create a list of image files
 image_files = [f for f in os.listdir(train_images_path) if f.endswith('.jpg')]
 
-# Randomly select 15 images
 random_images = random.sample(image_files, 15)
 
 # Create a new figure
@@ -82,7 +81,7 @@ import torch
 
 results = model.train(
     data=yaml_file_path,     # Path to the dataset configuration file
-    epochs=2,              # Number of epochs to train for
+    epochs=10,              # Number of epochs to train for
     imgsz=640,               # Size of input images as integer
     patience=15,             # Epochs to wait for no observable improvement for early stopping of training
     batch=16,                # Number of images per batch
@@ -93,7 +92,7 @@ results = model.train(
     device=torch.device('cpu'),                # Device to run on, i.e. cuda device=0
     seed=42                  # Random seed for reproducibility
 )
-post_training_files_path = 'C:\\Users\\prasad\\PycharmProjects\\potholeDetection\\runs\\segment\\train3'
+post_training_files_path = 'C:\\Users\\prasad\\PycharmProjects\\potholeDetection\\runs\\segment\\train6'
 
 results_file_path = os.path.join(post_training_files_path, 'results.png')
 
@@ -325,7 +324,7 @@ if results[0].masks is not None:
 
         # Display the mask with the green contour
         axes[i].imshow(color_mask)
-        axes[i].set_title(f'Pothole {i+1}')
+        #axes[i].set_title(f'Pothole {i+1}')
         axes[i].axis('off')
 
 
